@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DCSDemoDataStoreContainer" CdmEntityContainer="DB">
+    <EntitySetMapping Name="DowntimeReasonSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DowntimeCollection_Demo.DowntimeReason)">
+        <MappingFragment StoreEntitySet="DowntimeReasons">
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="IsChangeOver" ColumnName="IsChangeOver" />
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="HideReasonInReports" ColumnName="HideReasonInReports" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Level1" ColumnName="Level1" />
+          <ScalarProperty Name="Level2" ColumnName="Level2" />
+          <ScalarProperty Name="Level3" ColumnName="Level3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GoalSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DowntimeCollection_Demo.Goal)">
+        <MappingFragment StoreEntitySet="Goals">
+          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="CLIENT" ColumnName="CLIENT" />
+          <ScalarProperty Name="Occuring" ColumnName="Occuring" />
+          <ScalarProperty Name="Dowmtime" ColumnName="Dowmtime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_DowntimeReasonSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DowntimeCollection_Demo.vw_DowntimeReason)">
+        <MappingFragment StoreEntitySet="vw_DowntimeReasons">
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="Level3" ColumnName="Level3" />
+          <ScalarProperty Name="Level2" ColumnName="Level2" />
+          <ScalarProperty Name="Level1" ColumnName="Level1" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PeopleSavings">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.PeopleSavings">
+        <MappingFragment StoreEntitySet="PeopleSavings">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="AnnualSavings" ColumnName="AnnualSavings" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnnualSavings">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.AnnualSavings">
+        <MappingFragment StoreEntitySet="AnnualSavings">
+          <ScalarProperty Name="CurrentSavings" ColumnName="CurrentSavings" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CaseCountSet">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.CaseCount">
+        <MappingFragment StoreEntitySet="CaseCount">
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="CaseCount1" ColumnName="CaseCount" />
+          <ScalarProperty Name="EventStop" ColumnName="EventStop" />
+          <ScalarProperty Name="EventStart" ColumnName="EventStart" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfoSet">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.UserInfo">
+        <MappingFragment StoreEntitySet="UserInfo">
+          <ScalarProperty Name="ShiftStop" ColumnName="ShiftStop" />
+          <ScalarProperty Name="HideHelper" ColumnName="HideHelper" />
+          <ScalarProperty Name="HidePanel" ColumnName="HidePanel" />
+          <ScalarProperty Name="AdminPassword" ColumnName="AdminPassword" />
+          <ScalarProperty Name="UseLights" ColumnName="UseLights" />
+          <ScalarProperty Name="EstimatedOutput" ColumnName="EstimatedOutput" />
+          <ScalarProperty Name="ShiftStart" ColumnName="ShiftStart" />
+          <ScalarProperty Name="EffChartEnabled" ColumnName="EffChartEnabled" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Options">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.Options">
+        <MappingFragment StoreEntitySet="Options">
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThroughputHistory">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.ThroughputHistory">
+        <MappingFragment StoreEntitySet="ThroughputHistory">
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_ThroughputHistory_Options" TypeName="DowntimeCollection_Demo.FK_ThroughputHistory_Options" StoreEntitySet="ThroughputHistory">
+      <EndProperty Name="ThroughputHistory">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="Options">
+        <ScalarProperty Name="Id" ColumnName="Option1Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_ThroughputHistory_Options1" TypeName="DowntimeCollection_Demo.FK_ThroughputHistory_Options1" StoreEntitySet="ThroughputHistory">
+      <EndProperty Name="ThroughputHistory">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="Options">
+        <ScalarProperty Name="Id" ColumnName="Option2Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="DowntimeDataSet">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.DowntimeData">
+        <MappingFragment StoreEntitySet="DowntimeData">
+          <ScalarProperty Name="IsCreatedByAcromag" ColumnName="IsCreatedByAcromag" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="ReasonCodeID" ColumnName="ReasonCodeID" />
+          <ScalarProperty Name="ReasonCode" ColumnName="ReasonCode" />
+          <ScalarProperty Name="Minutes" ColumnName="Minutes" />
+          <ScalarProperty Name="EventStop" ColumnName="EventStop" />
+          <ScalarProperty Name="EventStart" ColumnName="EventStart" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LineStatus">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.LineStatus">
+        <MappingFragment StoreEntitySet="LineStatus">
+          <ScalarProperty Name="FromTimezone" ColumnName="FromTimezone" />
+          <ScalarProperty Name="Timezone" ColumnName="Timezone" />
+          <ScalarProperty Name="ShiftStart" ColumnName="ShiftStart" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductionSchedules">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.ProductionSchedule">
+        <MappingFragment StoreEntitySet="ProductionSchedule">
+          <ScalarProperty Name="LightsOn" ColumnName="LightsOn" />
+          <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Details">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.Detail">
+        <MappingFragment StoreEntitySet="Details">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DowntimeDetails">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.DowntimeDetail">
+        <MappingFragment StoreEntitySet="DowntimeDetails">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_DowntimeDetails_Details1" TypeName="DowntimeCollection_Demo.FK_DowntimeDetails_Details1" StoreEntitySet="DowntimeDetails">
+      <EndProperty Name="DowntimeDetail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="Detail1">
+        <ScalarProperty Name="Id" ColumnName="DetailId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_DowntimeDetails_DowntimeData1" TypeName="DowntimeCollection_Demo.FK_DowntimeDetails_DowntimeData1" StoreEntitySet="DowntimeDetails">
+      <EndProperty Name="DowntimeDetail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="DowntimeData">
+        <ScalarProperty Name="ID" ColumnName="DowntimeId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="vw_DowntimeDetails">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.vw_DowntimeDetails">
+        <MappingFragment StoreEntitySet="vw_DowntimeDetails">
+          <ScalarProperty Name="DefaultValue" ColumnName="DefaultValue" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Minutes" ColumnName="Minutes" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="ReasonCodeID" ColumnName="ReasonCodeID" />
+          <ScalarProperty Name="ReasonCode" ColumnName="ReasonCode" />
+          <ScalarProperty Name="EventStop" ColumnName="EventStop" />
+          <ScalarProperty Name="EventStart" ColumnName="EventStart" />
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="DetailId" ColumnName="DetailId" />
+          <ScalarProperty Name="DowntimeId" ColumnName="DowntimeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Throughput">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.Throughput">
+        <MappingFragment StoreEntitySet="Throughput">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="PerHour" ColumnName="PerHour" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_ThroughputHistory_Throughput" TypeName="DowntimeCollection_Demo.FK_ThroughputHistory_Throughput" StoreEntitySet="ThroughputHistory">
+      <EndProperty Name="ThroughputHistory">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="Throughput">
+        <ScalarProperty Name="Id" ColumnName="ThroughputId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="DataCollectionNodes">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.DataCollectionNode">
+        <MappingFragment StoreEntitySet="DataCollectionNode">
+          <ScalarProperty Name="Uptime" ColumnName="Uptime" />
+          <ScalarProperty Name="Monitor" ColumnName="Monitor" />
+          <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="ServerName" ColumnName="ServerName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LineSetups">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.LineSetup">
+        <MappingFragment StoreEntitySet="LineSetup">
+          <ScalarProperty Name="DowntimeThreshold" ColumnName="DowntimeThreshold" />
+          <ScalarProperty Name="UptimeThreshold" ColumnName="UptimeThreshold" />
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_LineSetup_DataCollectionNode" TypeName="DowntimeCollection_Demo.FK_LineSetup_DataCollectionNode" StoreEntitySet="LineSetup">
+      <EndProperty Name="LineSetup">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="DataCollectionNode">
+        <ScalarProperty Name="Id" ColumnName="NodeId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="DigestEmails">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.DigestEmail">
+        <MappingFragment StoreEntitySet="DigestEmail">
+          <ScalarProperty Name="IsWeekly" ColumnName="IsWeekly" />
+          <ScalarProperty Name="IsDaily" ColumnName="IsDaily" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DigestEmailLines">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.DigestEmailLine">
+        <MappingFragment StoreEntitySet="DigestEmailLine">
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_DigestEmailLine_DigestEmail" TypeName="DowntimeCollection_Demo.FK_DigestEmailLine_DigestEmail" StoreEntitySet="DigestEmailLine">
+      <EndProperty Name="DigestEmailLine">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="DigestEmail">
+        <ScalarProperty Name="Id" ColumnName="DigestEmailId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="ClientEmails">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.ClientEmail">
+        <MappingFragment StoreEntitySet="ClientEmail">
+          <ScalarProperty Name="SendDailyDigest" ColumnName="SendDailyDigest" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AscommStatuses">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.AscommStatus">
+        <MappingFragment StoreEntitySet="AscommStatus">
+          <ScalarProperty Name="LastPing" ColumnName="LastPing" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OptionInfoes">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.OptionInfo">
+        <MappingFragment StoreEntitySet="OptionInfo">
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="IsRequired" ColumnName="IsRequired" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NatureOfStoppages">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.NatureOfStoppage">
+        <MappingFragment StoreEntitySet="NatureOfStoppages">
+          <ScalarProperty Name="OptionId" ColumnName="OptionId" />
+          <ScalarProperty Name="DowntimeId" ColumnName="DowntimeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DowntimeChildren">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.DowntimeChild">
+        <MappingFragment StoreEntitySet="DowntimeChild">
+          <ScalarProperty Name="ReasonCodeId" ColumnName="ReasonCodeId" />
+          <ScalarProperty Name="DowntimeId" ColumnName="DowntimeId" />
+          <ScalarProperty Name="ParentDowntimeId" ColumnName="ParentDowntimeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LineEfficiencies">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.LineEfficiency">
+        <MappingFragment StoreEntitySet="LineEfficiency">
+          <ScalarProperty Name="SKU" ColumnName="SKU" />
+          <ScalarProperty Name="Estimate" ColumnName="Estimate" />
+          <ScalarProperty Name="Cases" ColumnName="Cases" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeviceSetups">
+      <EntityTypeMapping TypeName="DowntimeCollection_Demo.DeviceSetup">
+        <MappingFragment StoreEntitySet="DeviceSetup">
+          <ScalarProperty Name="TrackDowntime" ColumnName="TrackDowntime" />
+          <ScalarProperty Name="DataType" ColumnName="DataType" />
+          <ScalarProperty Name="TagType" ColumnName="TagType" />
+          <ScalarProperty Name="TagName" ColumnName="TagName" />
+          <ScalarProperty Name="AddressType" ColumnName="AddressType" />
+          <ScalarProperty Name="TrackingType" ColumnName="TrackingType" />
+          <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_DeviceSetup_LineSetup" TypeName="DowntimeCollection_Demo.FK_DeviceSetup_LineSetup" StoreEntitySet="DeviceSetup">
+      <EndProperty Name="DeviceSetup">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="LineSetup">
+        <ScalarProperty Name="Id" ColumnName="LineSetupId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

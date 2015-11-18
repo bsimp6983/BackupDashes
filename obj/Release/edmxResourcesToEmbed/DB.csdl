@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DowntimeCollection_Demo" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="DB">
+    <EntitySet Name="DowntimeReasonSet" EntityType="DowntimeCollection_Demo.DowntimeReason" />
+    <EntitySet Name="GoalSet" EntityType="DowntimeCollection_Demo.Goal" />
+    <EntitySet Name="vw_DowntimeReasonSet" EntityType="DowntimeCollection_Demo.vw_DowntimeReason" />
+    <EntitySet Name="PeopleSavings" EntityType="DowntimeCollection_Demo.PeopleSavings" />
+    <EntitySet Name="AnnualSavings" EntityType="DowntimeCollection_Demo.AnnualSavings" />
+    <EntitySet Name="CaseCountSet" EntityType="DowntimeCollection_Demo.CaseCount" />
+    <EntitySet Name="UserInfoSet" EntityType="DowntimeCollection_Demo.UserInfo" />
+    <EntitySet Name="Options" EntityType="DowntimeCollection_Demo.Options" />
+    <EntitySet Name="ThroughputHistory" EntityType="DowntimeCollection_Demo.ThroughputHistory" />
+    <AssociationSet Name="FK_ThroughputHistory_Options" Association="DowntimeCollection_Demo.FK_ThroughputHistory_Options">
+      <End Role="Options" EntitySet="Options" />
+      <End Role="ThroughputHistory" EntitySet="ThroughputHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThroughputHistory_Options1" Association="DowntimeCollection_Demo.FK_ThroughputHistory_Options1">
+      <End Role="Options" EntitySet="Options" />
+      <End Role="ThroughputHistory" EntitySet="ThroughputHistory" />
+    </AssociationSet>
+    <EntitySet Name="DowntimeDataSet" EntityType="DowntimeCollection_Demo.DowntimeData" />
+    <EntitySet Name="LineStatus" EntityType="DowntimeCollection_Demo.LineStatus" />
+    <EntitySet Name="ProductionSchedules" EntityType="DowntimeCollection_Demo.ProductionSchedule" />
+    <EntitySet Name="Details" EntityType="DowntimeCollection_Demo.Detail" />
+    <EntitySet Name="DowntimeDetails" EntityType="DowntimeCollection_Demo.DowntimeDetail" />
+    <AssociationSet Name="FK_DowntimeDetails_Details1" Association="DowntimeCollection_Demo.FK_DowntimeDetails_Details1">
+      <End Role="Detail1" EntitySet="Details" />
+      <End Role="DowntimeDetail" EntitySet="DowntimeDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DowntimeDetails_DowntimeData1" Association="DowntimeCollection_Demo.FK_DowntimeDetails_DowntimeData1">
+      <End Role="DowntimeData" EntitySet="DowntimeDataSet" />
+      <End Role="DowntimeDetail" EntitySet="DowntimeDetails" />
+    </AssociationSet>
+    <EntitySet Name="vw_DowntimeDetails" EntityType="DowntimeCollection_Demo.vw_DowntimeDetails" />
+    <EntitySet Name="Throughput" EntityType="DowntimeCollection_Demo.Throughput" />
+    <AssociationSet Name="FK_ThroughputHistory_Throughput" Association="DowntimeCollection_Demo.FK_ThroughputHistory_Throughput">
+      <End Role="Throughput" EntitySet="Throughput" />
+      <End Role="ThroughputHistory" EntitySet="ThroughputHistory" />
+    </AssociationSet>
+    <EntitySet Name="DataCollectionNodes" EntityType="DowntimeCollection_Demo.DataCollectionNode" />
+    <EntitySet Name="LineSetups" EntityType="DowntimeCollection_Demo.LineSetup" />
+    <AssociationSet Name="FK_LineSetup_DataCollectionNode" Association="DowntimeCollection_Demo.FK_LineSetup_DataCollectionNode">
+      <End Role="DataCollectionNode" EntitySet="DataCollectionNodes" />
+      <End Role="LineSetup" EntitySet="LineSetups" />
+    </AssociationSet>
+    <EntitySet Name="DigestEmails" EntityType="DowntimeCollection_Demo.DigestEmail" />
+    <EntitySet Name="DigestEmailLines" EntityType="DowntimeCollection_Demo.DigestEmailLine" />
+    <AssociationSet Name="FK_DigestEmailLine_DigestEmail" Association="DowntimeCollection_Demo.FK_DigestEmailLine_DigestEmail">
+      <End Role="DigestEmail" EntitySet="DigestEmails" />
+      <End Role="DigestEmailLine" EntitySet="DigestEmailLines" />
+    </AssociationSet>
+    <EntitySet Name="ClientEmails" EntityType="DowntimeCollection_Demo.ClientEmail" />
+    <EntitySet Name="AscommStatuses" EntityType="DowntimeCollection_Demo.AscommStatus" />
+    <EntitySet Name="OptionInfoes" EntityType="DowntimeCollection_Demo.OptionInfo" />
+    <EntitySet Name="NatureOfStoppages" EntityType="DowntimeCollection_Demo.NatureOfStoppage" />
+    <AssociationSet Name="FK_NatureOfStoppages_NatureOfStoppages" Association="DowntimeCollection_Demo.FK_NatureOfStoppages_NatureOfStoppages">
+      <End Role="NatureOfStoppage" EntitySet="NatureOfStoppages" />
+      <End Role="NatureOfStoppage1" EntitySet="NatureOfStoppages" />
+    </AssociationSet>
+    <EntitySet Name="DowntimeChildren" EntityType="DowntimeCollection_Demo.DowntimeChild" />
+    <EntitySet Name="LineEfficiencies" EntityType="DowntimeCollection_Demo.LineEfficiency" />
+    <EntitySet Name="DeviceSetups" EntityType="DowntimeCollection_Demo.DeviceSetup" />
+    <AssociationSet Name="FK_DeviceSetup_LineSetup" Association="DowntimeCollection_Demo.FK_DeviceSetup_LineSetup">
+      <End Role="LineSetup" EntitySet="LineSetups" />
+      <End Role="DeviceSetup" EntitySet="DeviceSetups" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DowntimeReason">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Level1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Level2" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Level3" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Client" Type="String" Nullable="true" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="HideReasonInReports" Type="Boolean" Nullable="false" />
+    <Property Type="String" Name="Line" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="IsChangeOver" Nullable="false" />
+    <Property Type="Int32" Name="Duration" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Goal">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Dowmtime" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Occuring" Type="Int32" Nullable="false" />
+    <Property Type="String" Name="CLIENT" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LINE" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vw_DowntimeReason">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Nullable="false" Type="Int32" />
+    <Property Name="Level1" Nullable="true" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Level2" Nullable="true" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Level3" Nullable="true" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Client" Nullable="true" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="PeopleSavings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Number" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="AnnualSavings" Precision="19" Scale="4" />
+    <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AnnualSavings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="Decimal" Name="CurrentSavings" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="CaseCount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="DateTime" Name="EventStart" Precision="3" />
+    <Property Type="DateTime" Name="EventStop" Precision="3" />
+    <Property Type="Int32" Name="CaseCount1" Nullable="false" />
+    <Property Type="String" Name="Line" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Client" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="Guid" Name="UserId" Nullable="false" />
+    <Property Type="Boolean" Name="EffChartEnabled" Nullable="false" />
+    <Property Type="DateTime" Name="ShiftStart" Precision="3" />
+    <Property Type="Int32" Name="EstimatedOutput" Nullable="false" />
+    <Property Type="Boolean" Name="UseLights" Nullable="false" />
+    <Property Type="String" Name="AdminPassword" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="HidePanel" Nullable="false" />
+    <Property Type="Boolean" Name="HideHelper" Nullable="false" />
+    <Property Type="DateTime" Name="ShiftStop" Precision="3" />
+  </EntityType>
+  <EntityType Name="Options">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Client" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ThroughputHistory" Relationship="DowntimeCollection_Demo.FK_ThroughputHistory_Options" FromRole="Options" ToRole="ThroughputHistory" />
+    <NavigationProperty Name="ThroughputHistory1" Relationship="DowntimeCollection_Demo.FK_ThroughputHistory_Options1" FromRole="Options" ToRole="ThroughputHistory" />
+    <Property Type="Int32" Name="Number" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ThroughputHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Client" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Options" Relationship="DowntimeCollection_Demo.FK_ThroughputHistory_Options" FromRole="ThroughputHistory" ToRole="Options" />
+    <NavigationProperty Name="Options1" Relationship="DowntimeCollection_Demo.FK_ThroughputHistory_Options1" FromRole="ThroughputHistory" ToRole="Options" />
+    <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+    <Property Type="String" Name="Line" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Throughput" Relationship="DowntimeCollection_Demo.FK_ThroughputHistory_Throughput" FromRole="ThroughputHistory" ToRole="Throughput" />
+  </EntityType>
+  <Association Name="FK_ThroughputHistory_Options">
+    <End Type="DowntimeCollection_Demo.Options" Role="Options" Multiplicity="1" />
+    <End Type="DowntimeCollection_Demo.ThroughputHistory" Role="ThroughputHistory" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_ThroughputHistory_Options1">
+    <End Type="DowntimeCollection_Demo.Options" Role="Options" Multiplicity="1" />
+    <End Type="DowntimeCollection_Demo.ThroughputHistory" Role="ThroughputHistory" Multiplicity="*" />
+  </Association>
+  <EntityType Name="DowntimeData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="DateTime" Name="EventStart" Precision="3" />
+    <Property Type="DateTime" Name="EventStop" Precision="3" />
+    <Property Type="Decimal" Name="Minutes" Precision="18" Scale="2" />
+    <Property Type="String" Name="ReasonCode" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="ReasonCodeID" />
+    <Property Type="String" Name="Comment" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Line" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Client" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="IsCreatedByAcromag" />
+    <NavigationProperty Name="DowntimeDetails_1" Relationship="DowntimeCollection_Demo.FK_DowntimeDetails_DowntimeData1" FromRole="DowntimeData" ToRole="DowntimeDetail" />
+  </EntityType>
+  <EntityType Name="LineStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Line" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Client" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="EventTime" Precision="3" />
+    <Property Type="Boolean" Name="Status" />
+    <Property Type="String" Name="ShiftStart" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Timezone" Nullable="false" MaxLength="255" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="FromTimezone" MaxLength="255" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ProductionSchedule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Client" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Line" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="EventTime" Nullable="false" Precision="3" />
+    <Property Type="Boolean" Name="LightsOn" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Detail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Client" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Line" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ParentId" />
+    <Property Type="String" Name="Key" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Value" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DowntimeDetails" Relationship="DowntimeCollection_Demo.FK_DowntimeDetails_Details1" FromRole="Detail1" ToRole="DowntimeDetail" />
+  </EntityType>
+  <EntityType Name="DowntimeDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Value" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Detail" Relationship="DowntimeCollection_Demo.FK_DowntimeDetails_Details1" FromRole="DowntimeDetail" ToRole="Detail1" />
+    <NavigationProperty Name="DowntimeData" Relationship="DowntimeCollection_Demo.FK_DowntimeDetails_DowntimeData1" FromRole="DowntimeDetail" ToRole="DowntimeData" />
+  </EntityType>
+  <Association Name="FK_DowntimeDetails_Details1">
+    <End Type="DowntimeCollection_Demo.Detail" Role="Detail1" Multiplicity="1" />
+    <End Type="DowntimeCollection_Demo.DowntimeDetail" Role="DowntimeDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_DowntimeDetails_DowntimeData1">
+    <End Type="DowntimeCollection_Demo.DowntimeData" Role="DowntimeData" Multiplicity="1" />
+    <End Type="DowntimeCollection_Demo.DowntimeDetail" Role="DowntimeDetail" Multiplicity="*" />
+  </Association>
+  <EntityType Name="vw_DowntimeDetails">
+    <Key>
+      <PropertyRef Name="DowntimeId" />
+      <PropertyRef Name="DetailId" />
+      <PropertyRef Name="Key" />
+    </Key>
+    <Property Type="Int32" Name="DowntimeId" Nullable="false" />
+    <Property Type="Int32" Name="DetailId" Nullable="false" />
+    <Property Type="String" Name="Client" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Line" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="EventStart" Precision="3" />
+    <Property Type="DateTime" Name="EventStop" Precision="3" />
+    <Property Type="String" Name="ReasonCode" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="ReasonCodeID" />
+    <Property Type="String" Name="Comment" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="Minutes" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="ParentId" />
+    <Property Type="String" Name="Key" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Value" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DefaultValue" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Throughput">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="PerHour" Nullable="false" />
+    <Property Type="String" Name="Client" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Active" Nullable="false" />
+    <NavigationProperty Name="ThroughputHistories" Relationship="DowntimeCollection_Demo.FK_ThroughputHistory_Throughput" FromRole="Throughput" ToRole="ThroughputHistory" />
+  </EntityType>
+  <Association Name="FK_ThroughputHistory_Throughput">
+    <End Type="DowntimeCollection_Demo.Throughput" Role="Throughput" Multiplicity="1" />
+    <End Type="DowntimeCollection_Demo.ThroughputHistory" Role="ThroughputHistory" Multiplicity="*" />
+  </Association>
+  <EntityType Name="DataCollectionNode">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="ServerName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Client" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LineSetups" Relationship="DowntimeCollection_Demo.FK_LineSetup_DataCollectionNode" FromRole="DataCollectionNode" ToRole="LineSetup" />
+    <Property Type="String" Name="TimeZone" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Monitor" Type="Boolean" Nullable="false" />
+    <Property Name="Uptime" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LineSetup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Line" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="DowntimeThreshold" Nullable="false" />
+    <Property Type="Int32" Name="UptimeThreshold" Nullable="false" />
+    <NavigationProperty Name="DataCollectionNode" Relationship="DowntimeCollection_Demo.FK_LineSetup_DataCollectionNode" FromRole="LineSetup" ToRole="DataCollectionNode" />
+    <NavigationProperty Name="DeviceSetups" Relationship="DowntimeCollection_Demo.FK_DeviceSetup_LineSetup" FromRole="LineSetup" ToRole="DeviceSetup" />
+  </EntityType>
+  <Association Name="FK_LineSetup_DataCollectionNode">
+    <End Type="DowntimeCollection_Demo.DataCollectionNode" Role="DataCollectionNode" Multiplicity="1" />
+    <End Type="DowntimeCollection_Demo.LineSetup" Role="LineSetup" Multiplicity="*" />
+  </Association>
+  <EntityType Name="DigestEmail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DigestEmailLines" Relationship="DowntimeCollection_Demo.FK_DigestEmailLine_DigestEmail" FromRole="DigestEmail" ToRole="DigestEmailLine" />
+    <Property Type="String" Name="Client" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsDaily" Nullable="false" />
+    <Property Type="Boolean" Name="IsWeekly" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DigestEmailLine">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Line" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DigestEmail" Relationship="DowntimeCollection_Demo.FK_DigestEmailLine_DigestEmail" FromRole="DigestEmailLine" ToRole="DigestEmail" />
+  </EntityType>
+  <Association Name="FK_DigestEmailLine_DigestEmail">
+    <End Type="DowntimeCollection_Demo.DigestEmail" Role="DigestEmail" Multiplicity="1" />
+    <End Type="DowntimeCollection_Demo.DigestEmailLine" Role="DigestEmailLine" Multiplicity="*" />
+  </Association>
+  <EntityType Name="ClientEmail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Client" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="SendDailyDigest" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AscommStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Client" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Line" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="DateTime" Name="LastPing" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="OptionInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="Int32" Name="Number" Nullable="false" />
+    <Property Type="String" Name="Name" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsRequired" Nullable="false" />
+    <Property Type="String" Name="Client" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Enabled" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NatureOfStoppage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="Int32" Name="DowntimeId" Nullable="false" />
+    <Property Type="Int32" Name="OptionId" Nullable="false" />
+    <NavigationProperty Name="NatureOfStoppages1" Relationship="DowntimeCollection_Demo.FK_NatureOfStoppages_NatureOfStoppages" FromRole="NatureOfStoppage" ToRole="NatureOfStoppage1" />
+    <NavigationProperty Name="NatureOfStoppage1" Relationship="DowntimeCollection_Demo.FK_NatureOfStoppages_NatureOfStoppages" FromRole="NatureOfStoppage1" ToRole="NatureOfStoppage" />
+  </EntityType>
+  <Association Name="FK_NatureOfStoppages_NatureOfStoppages">
+    <End Type="DowntimeCollection_Demo.NatureOfStoppage" Role="NatureOfStoppage" Multiplicity="1" />
+    <End Type="DowntimeCollection_Demo.NatureOfStoppage" Role="NatureOfStoppage1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="NatureOfStoppage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NatureOfStoppage1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DowntimeChild">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="Int32" Name="ParentDowntimeId" Nullable="false" />
+    <Property Type="Int32" Name="DowntimeId" Nullable="false" />
+    <Property Type="Int32" Name="ReasonCodeId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LineEfficiency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Client" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Line" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Time" Nullable="false" Precision="3" />
+    <Property Type="Decimal" Name="Value" Nullable="false" Precision="6" Scale="2" />
+    <Property Type="Int32" Name="Cases" Nullable="false" />
+    <Property Type="Int32" Name="Estimate" Nullable="false" />
+    <Property Type="String" Name="SKU" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DeviceSetup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="IpAddress" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="TrackingType" Nullable="false" />
+    <Property Type="Int32" Name="AddressType" Nullable="false" />
+    <Property Type="String" Name="TagName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="TagType" Nullable="false" />
+    <Property Type="Int32" Name="DataType" Nullable="false" />
+    <Property Type="Boolean" Name="TrackDowntime" Nullable="false" />
+    <NavigationProperty Name="LineSetup" Relationship="DowntimeCollection_Demo.FK_DeviceSetup_LineSetup" FromRole="DeviceSetup" ToRole="LineSetup" />
+  </EntityType>
+  <Association Name="FK_DeviceSetup_LineSetup">
+    <End Type="DowntimeCollection_Demo.LineSetup" Role="LineSetup" Multiplicity="1" />
+    <End Type="DowntimeCollection_Demo.DeviceSetup" Role="DeviceSetup" Multiplicity="*" />
+  </Association>
+</Schema>

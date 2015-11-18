@@ -1,0 +1,506 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DCSDemoData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="DCSDemoDataStoreContainer">
+    <EntitySet Name="AnnualSavings" EntityType="DCSDemoData.Store.AnnualSavings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AscommStatus" EntityType="DCSDemoData.Store.AscommStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CaseCount" EntityType="DCSDemoData.Store.CaseCount" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClientEmail" EntityType="DCSDemoData.Store.ClientEmail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DataCollectionNode" EntityType="DCSDemoData.Store.DataCollectionNode" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Details" EntityType="DCSDemoData.Store.Details" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DeviceSetup" EntityType="DCSDemoData.Store.DeviceSetup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DigestEmail" EntityType="DCSDemoData.Store.DigestEmail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DigestEmailLine" EntityType="DCSDemoData.Store.DigestEmailLine" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DowntimeChild" EntityType="DCSDemoData.Store.DowntimeChild" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DowntimeData" EntityType="DCSDemoData.Store.DowntimeData" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DowntimeDetails" EntityType="DCSDemoData.Store.DowntimeDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DowntimeReasons" EntityType="DCSDemoData.Store.DowntimeReasons" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Goals" EntityType="DCSDemoData.Store.Goals" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LineEfficiency" EntityType="DCSDemoData.Store.LineEfficiency" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LineSetup" EntityType="DCSDemoData.Store.LineSetup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LineStatus" EntityType="DCSDemoData.Store.LineStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NatureOfStoppages" EntityType="DCSDemoData.Store.NatureOfStoppages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OptionInfo" EntityType="DCSDemoData.Store.OptionInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Options" EntityType="DCSDemoData.Store.Options" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PeopleSavings" EntityType="DCSDemoData.Store.PeopleSavings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductionSchedule" EntityType="DCSDemoData.Store.ProductionSchedule" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Throughput" EntityType="DCSDemoData.Store.Throughput" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ThroughputHistory" EntityType="DCSDemoData.Store.ThroughputHistory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserInfo" EntityType="DCSDemoData.Store.UserInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="vw_DowntimeDetails" EntityType="DCSDemoData.Store.vw_DowntimeDetails" store:Type="Views" store:Schema="dbo" store:Name="vw_DowntimeDetails">
+      <DefiningQuery>SELECT 
+      [vw_DowntimeDetails].[DowntimeId] AS [DowntimeId], 
+      [vw_DowntimeDetails].[DetailId] AS [DetailId], 
+      [vw_DowntimeDetails].[Client] AS [Client], 
+      [vw_DowntimeDetails].[Line] AS [Line], 
+      [vw_DowntimeDetails].[EventStart] AS [EventStart], 
+      [vw_DowntimeDetails].[EventStop] AS [EventStop], 
+      [vw_DowntimeDetails].[ReasonCode] AS [ReasonCode], 
+      [vw_DowntimeDetails].[ReasonCodeID] AS [ReasonCodeID], 
+      [vw_DowntimeDetails].[Comment] AS [Comment], 
+      [vw_DowntimeDetails].[Minutes] AS [Minutes], 
+      [vw_DowntimeDetails].[ParentId] AS [ParentId], 
+      [vw_DowntimeDetails].[Key] AS [Key], 
+      [vw_DowntimeDetails].[Value] AS [Value], 
+      [vw_DowntimeDetails].[DefaultValue] AS [DefaultValue]
+      FROM [dbo].[vw_DowntimeDetails] AS [vw_DowntimeDetails]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_DowntimeReasons" EntityType="DCSDemoData.Store.vw_DowntimeReasons" store:Type="Views" store:Schema="dbo" store:Name="vw_DowntimeReasons">
+      <DefiningQuery>SELECT 
+      [vw_DowntimeReasons].[ID] AS [ID], 
+      [vw_DowntimeReasons].[Level1] AS [Level1], 
+      [vw_DowntimeReasons].[Level2] AS [Level2], 
+      [vw_DowntimeReasons].[Level3] AS [Level3], 
+      [vw_DowntimeReasons].[Client] AS [Client]
+      FROM [dbo].[vw_DowntimeReasons] AS [vw_DowntimeReasons]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_DeviceSetup_LineSetup" Association="DCSDemoData.Store.FK_DeviceSetup_LineSetup">
+      <End Role="LineSetup" EntitySet="LineSetup" />
+      <End Role="DeviceSetup" EntitySet="DeviceSetup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DigestEmailLine_DigestEmail" Association="DCSDemoData.Store.FK_DigestEmailLine_DigestEmail">
+      <End Role="DigestEmail" EntitySet="DigestEmail" />
+      <End Role="DigestEmailLine" EntitySet="DigestEmailLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DowntimeDetails_Details" Association="DCSDemoData.Store.FK_DowntimeDetails_Details">
+      <End Role="Details" EntitySet="Details" />
+      <End Role="DowntimeDetails" EntitySet="DowntimeDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DowntimeDetails_DowntimeData" Association="DCSDemoData.Store.FK_DowntimeDetails_DowntimeData">
+      <End Role="DowntimeData" EntitySet="DowntimeData" />
+      <End Role="DowntimeDetails" EntitySet="DowntimeDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LineSetup_DataCollectionNode" Association="DCSDemoData.Store.FK_LineSetup_DataCollectionNode">
+      <End Role="DataCollectionNode" EntitySet="DataCollectionNode" />
+      <End Role="LineSetup" EntitySet="LineSetup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NatureOfStoppages_NatureOfStoppages" Association="DCSDemoData.Store.FK_NatureOfStoppages_NatureOfStoppages">
+      <End Role="NatureOfStoppages" EntitySet="NatureOfStoppages" />
+      <End Role="NatureOfStoppages1" EntitySet="NatureOfStoppages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThroughputHistory_Options" Association="DCSDemoData.Store.FK_ThroughputHistory_Options">
+      <End Role="Options" EntitySet="Options" />
+      <End Role="ThroughputHistory" EntitySet="ThroughputHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThroughputHistory_Options1" Association="DCSDemoData.Store.FK_ThroughputHistory_Options1">
+      <End Role="Options" EntitySet="Options" />
+      <End Role="ThroughputHistory" EntitySet="ThroughputHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThroughputHistory_Throughput" Association="DCSDemoData.Store.FK_ThroughputHistory_Throughput">
+      <End Role="Throughput" EntitySet="Throughput" />
+      <End Role="ThroughputHistory" EntitySet="ThroughputHistory" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AnnualSavings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CurrentSavings" Type="money" />
+  </EntityType>
+  <EntityType Name="AscommStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Client" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Line" Type="nvarchar" MaxLength="150" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="LastPing" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CaseCount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EventStart" Type="datetime" />
+    <Property Name="EventStop" Type="datetime" />
+    <Property Name="CaseCount" Type="int" Nullable="false" />
+    <Property Name="Line" Type="nvarchar" MaxLength="50" />
+    <Property Name="Client" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="ClientEmail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Client" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="SendDailyDigest" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DataCollectionNode">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ServerName" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Client" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="TimeZone" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Monitor" Type="bit" Nullable="false" />
+    <Property Name="Uptime" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Details">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Client" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Line" Type="nvarchar" MaxLength="150" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Value" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DeviceSetup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="LineSetupId" Type="int" Nullable="false" />
+    <Property Name="IpAddress" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="TrackingType" Type="int" Nullable="false" />
+    <Property Name="AddressType" Type="int" Nullable="false" />
+    <Property Name="TagName" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="TagType" Type="int" Nullable="false" />
+    <Property Name="DataType" Type="int" Nullable="false" />
+    <Property Name="TrackDowntime" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DigestEmail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Client" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="IsDaily" Type="bit" Nullable="false" />
+    <Property Name="IsWeekly" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DigestEmailLine">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DigestEmailId" Type="int" Nullable="false" />
+    <Property Name="Line" Type="nvarchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="DowntimeChild">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ParentDowntimeId" Type="int" Nullable="false" />
+    <Property Name="DowntimeId" Type="int" Nullable="false" />
+    <Property Name="ReasonCodeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DowntimeData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EventStart" Type="datetime" />
+    <Property Name="EventStop" Type="datetime" />
+    <Property Name="Minutes" Type="decimal" Scale="2" />
+    <Property Name="ReasonCode" Type="varchar" MaxLength="255" />
+    <Property Name="ReasonCodeID" Type="int" />
+    <Property Name="Comment" Type="varchar" />
+    <Property Name="Line" Type="varchar" MaxLength="50" />
+    <Property Name="Client" Type="varchar" MaxLength="255" />
+    <Property Name="IsCreatedByAcromag" Type="bit" />
+  </EntityType>
+  <EntityType Name="DowntimeDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DowntimeId" Type="int" Nullable="false" />
+    <Property Name="DetailId" Type="int" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DowntimeReasons">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Level1" Type="varchar" MaxLength="255" />
+    <Property Name="Level2" Type="varchar" MaxLength="255" />
+    <Property Name="Level3" Type="varchar" MaxLength="255" />
+    <Property Name="Client" Type="varchar" MaxLength="255" />
+    <Property Name="HideReasonInReports" Type="bit" Nullable="false" />
+    <Property Name="Line" Type="varchar" MaxLength="50" />
+    <Property Name="IsChangeOver" Type="bit" Nullable="false" />
+    <Property Name="Duration" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Goals">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
+    <Property Name="Dowmtime" Type="decimal" Nullable="false" Scale="2" />
+    <Property Name="Occuring" Type="int" Nullable="false" />
+    <Property Name="CLIENT" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="LINE" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="LineEfficiency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Client" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Line" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
+    <Property Name="Value" Type="decimal" Nullable="false" Precision="6" Scale="2" />
+    <Property Name="Cases" Type="int" Nullable="false" />
+    <Property Name="Estimate" Type="int" Nullable="false" />
+    <Property Name="SKU" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="LineSetup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NodeId" Type="int" Nullable="false" />
+    <Property Name="Line" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="DowntimeThreshold" Type="int" Nullable="false" />
+    <Property Name="UptimeThreshold" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LineStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Line" Type="nvarchar" MaxLength="100" />
+    <Property Name="Client" Type="nvarchar" MaxLength="100" />
+    <Property Name="EventTime" Type="datetime" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="ShiftStart" Type="nvarchar" MaxLength="100" />
+    <Property Name="Timezone" Type="char" Nullable="false" MaxLength="255" />
+    <Property Name="FromTimezone" Type="char" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="NatureOfStoppages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DowntimeId" Type="int" Nullable="false" />
+    <Property Name="OptionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OptionInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Client" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="IsRequired" Type="bit" Nullable="false" />
+    <Property Name="Enabled" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Options">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Client" Type="nvarchar" MaxLength="50" />
+    <Property Name="Number" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PeopleSavings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="AnnualSavings" Type="money" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ProductionSchedule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Client" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Line" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="EventTime" Type="datetime" Nullable="false" />
+    <Property Name="LightsOn" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Throughput">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="PerHour" Type="int" Nullable="false" />
+    <Property Name="Client" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ThroughputHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ThroughputId" Type="int" Nullable="false" />
+    <Property Name="Option1Id" Type="int" />
+    <Property Name="Option2Id" Type="int" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Client" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Line" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EffChartEnabled" Type="bit" Nullable="false" />
+    <Property Name="ShiftStart" Type="datetime" />
+    <Property Name="ShiftStop" Type="datetime" />
+    <Property Name="EstimatedOutput" Type="int" Nullable="false" />
+    <Property Name="UseLights" Type="bit" Nullable="false" />
+    <Property Name="AdminPassword" Type="nvarchar" MaxLength="150" />
+    <Property Name="HidePanel" Type="bit" Nullable="false" />
+    <Property Name="HideHelper" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_DowntimeDetails">
+    <Key>
+      <PropertyRef Name="DowntimeId" />
+      <PropertyRef Name="DetailId" />
+      <PropertyRef Name="Key" />
+    </Key>
+    <Property Name="DowntimeId" Type="int" Nullable="false" />
+    <Property Name="DetailId" Type="int" Nullable="false" />
+    <Property Name="Client" Type="varchar" MaxLength="255" />
+    <Property Name="Line" Type="varchar" MaxLength="50" />
+    <Property Name="EventStart" Type="datetime" />
+    <Property Name="EventStop" Type="datetime" />
+    <Property Name="ReasonCode" Type="varchar" MaxLength="255" />
+    <Property Name="ReasonCodeID" Type="int" />
+    <Property Name="Comment" Type="varchar" />
+    <Property Name="Minutes" Type="decimal" Scale="2" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Value" Type="nvarchar(max)" />
+    <Property Name="DefaultValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="vw_DowntimeReasons">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Level1" Type="varchar" MaxLength="255" />
+    <Property Name="Level2" Type="varchar" MaxLength="255" />
+    <Property Name="Level3" Type="varchar" MaxLength="255" />
+    <Property Name="Client" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK_DeviceSetup_LineSetup">
+    <End Role="LineSetup" Type="DCSDemoData.Store.LineSetup" Multiplicity="1" />
+    <End Role="DeviceSetup" Type="DCSDemoData.Store.DeviceSetup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LineSetup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DeviceSetup">
+        <PropertyRef Name="LineSetupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DigestEmailLine_DigestEmail">
+    <End Role="DigestEmail" Type="DCSDemoData.Store.DigestEmail" Multiplicity="1" />
+    <End Role="DigestEmailLine" Type="DCSDemoData.Store.DigestEmailLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DigestEmail">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DigestEmailLine">
+        <PropertyRef Name="DigestEmailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DowntimeDetails_Details">
+    <End Role="Details" Type="DCSDemoData.Store.Details" Multiplicity="1" />
+    <End Role="DowntimeDetails" Type="DCSDemoData.Store.DowntimeDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Details">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DowntimeDetails">
+        <PropertyRef Name="DetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DowntimeDetails_DowntimeData">
+    <End Role="DowntimeData" Type="DCSDemoData.Store.DowntimeData" Multiplicity="1" />
+    <End Role="DowntimeDetails" Type="DCSDemoData.Store.DowntimeDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DowntimeData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DowntimeDetails">
+        <PropertyRef Name="DowntimeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LineSetup_DataCollectionNode">
+    <End Role="DataCollectionNode" Type="DCSDemoData.Store.DataCollectionNode" Multiplicity="1" />
+    <End Role="LineSetup" Type="DCSDemoData.Store.LineSetup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataCollectionNode">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LineSetup">
+        <PropertyRef Name="NodeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NatureOfStoppages_NatureOfStoppages">
+    <End Role="NatureOfStoppages" Type="DCSDemoData.Store.NatureOfStoppages" Multiplicity="1" />
+    <End Role="NatureOfStoppages1" Type="DCSDemoData.Store.NatureOfStoppages" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="NatureOfStoppages">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NatureOfStoppages1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThroughputHistory_Options">
+    <End Role="Options" Type="DCSDemoData.Store.Options" Multiplicity="0..1" />
+    <End Role="ThroughputHistory" Type="DCSDemoData.Store.ThroughputHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Options">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ThroughputHistory">
+        <PropertyRef Name="Option1Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThroughputHistory_Options1">
+    <End Role="Options" Type="DCSDemoData.Store.Options" Multiplicity="0..1" />
+    <End Role="ThroughputHistory" Type="DCSDemoData.Store.ThroughputHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Options">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ThroughputHistory">
+        <PropertyRef Name="Option2Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThroughputHistory_Throughput">
+    <End Role="Throughput" Type="DCSDemoData.Store.Throughput" Multiplicity="1" />
+    <End Role="ThroughputHistory" Type="DCSDemoData.Store.ThroughputHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Throughput">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ThroughputHistory">
+        <PropertyRef Name="ThroughputId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

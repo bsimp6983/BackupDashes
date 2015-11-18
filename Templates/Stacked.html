@@ -1,0 +1,25 @@
+﻿<vc:Chart  xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLVisifire.Charts" Width="{{width}}" Height="{{height}}" Theme="Theme1" BorderBrush="Gray" AnimatedUpdate="true" CornerRadius="7" ShadowEnabled="true" Padding="6,8,8,10" > 
+    <vc:Chart.Titles> 
+        <vc:Title Text="{{title}}"/> 
+    </vc:Chart.Titles> 
+    <vc:Chart.AxesX> 
+        <vc:Axis Title="{{xTitle}}" /> 
+    </vc:Chart.AxesX> 
+    <vc:Chart.AxesY> 
+        <vc:Axis Title="{{yTitle}}" AxisMaximum="{{yAxisMax}}" AxisMinimum="{{yAxisMin}}" Prefix="{{prefix}}" ScalingSet="{{scale}}" Interval="{{interval}}"/> 
+    </vc:Chart.AxesY> 
+    <vc:Chart.PlotArea> 
+        <vc:PlotArea ShadowEnabled="false"/> 
+    </vc:Chart.PlotArea> 
+    <vc:Chart.Series> 
+        {{#each series}} 
+            <vc:DataSeries LegendText="{{text}}" RenderAs="StackedColumn" IncludeDataPointsInLegend="True" > 
+                <vc:DataSeries.DataPoints> 
+                    {{#each datapoints}} 
+                        <vc:DataPoint AxisXLabel="{{label}}" YValue="{{value}}" Color="{{color}}"/> 
+                    {{/each}} 
+                </vc:DataSeries.DataPoints>  
+            </vc:DataSeries>  
+        {{/each}} 
+    </vc:Chart.Series> 
+</vc:Chart>

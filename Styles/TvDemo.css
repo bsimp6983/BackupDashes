@@ -1,0 +1,387 @@
+/* browser reset */html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit}input,textarea,select{*font-size:100%}legend{color:#000}
+
+body {
+	font-family: Arial, Helvetica,sans-serif;
+}
+
+#header{
+	background:url(header.png) repeat-x center top;
+	height:118px;
+	margin-bottom:-12px;/* from the extra height the bottom of the Savings and Date Range box */
+	position:relative;
+	z-index:999;
+}
+
+#header .container {
+	background:url(header.png) repeat-x center top;
+	width:1280px;
+	margin:0 auto;
+	height:118px;
+	margin-bottom:-12px;
+	position:relative;
+}
+
+#footer {
+	background:url(footer.png) repeat-x center top;
+	width: 100%;
+}
+
+#footer #copyright {
+	width:30%;
+	float: right;
+}
+
+#footer #copyright a{
+	color:#363636;
+	text-decoration:none;
+	font-size:10px;
+}
+
+#footer .container
+{
+	background:url(footer.png) repeat-x center top;
+    width: 100%;
+    float: right;
+}
+
+#contentBg{
+	background:#032f4d url(bg.jpg) repeat-x center top;
+	height:638px;
+}
+
+#contentCharts{
+	background:url(chartsBg.png) no-repeat center center;
+	height:638px;
+	width: 1280px;
+	margin: 0 auto 0 auto;
+	position:relative;
+}
+
+#chartContainer
+{
+    width: 1260px;
+    margin: 0 auto;
+}
+
+#header .container a {
+	text-decoration:none;
+	color:#fff;
+	font-weight:bold;
+	text-shadow:#111111 1px 1px 1px;
+	font-size:16px;
+	padding:7px;
+	margin:0 10px 0 0;
+	display:block;
+	float:left;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+		background-image: -ms-linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-image: -moz-linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-image: -o-linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #91CD76), color-stop(1, #4D8933));
+		background-image: -webkit-linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-image: linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-color:#6ba751;
+		-moz-box-shadow: 0px 0px 3px #a0a0a0;
+		-webkit-box-shadow: 0px 0px 3px #a0a0a0;
+		box-shadow: 0px 0px 3px #a0a0a0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#a0a0a0')";
+}
+
+#header .container a:hover{
+	color:#000;
+	text-shadow:#ffffff 1px 1px 1px;
+		background-image: -ms-linear-gradient(top, #fefefe 0%, #bababa 100%);
+		background-image: -moz-linear-gradient(top, #fefefe 0%, #bababa 100%);
+		background-image: -o-linear-gradient(top, #fefefe 0%, #bababa 100%);
+		background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fefefe), color-stop(1, #bababa));
+		background-image: -webkit-linear-gradient(top, #fefefe 0%, #bababa 100%);
+		background-image: linear-gradient(top, #fefefe 0%, #bababa 100%);
+		background-color:#dedede;
+}
+
+.dataTables_wrapper {
+	margin:10px 0 0 0;
+	width:620px;
+	/*height: 100%;*/
+}
+
+.dataTables_wrapper caption{
+	display:none;
+}
+
+.dataTables_wrapper td{
+	border-bottom:1px solid #ddd;
+}
+
+.dataTables_paginate span{
+	text-decoration:none;
+	color:#1c4663;
+	font-weight:bold;
+	text-shadow:#111111 1px 1px 1px;
+	font-size:14px;
+	padding:6px;
+	cursor:pointer;
+	margin:0 10px 0 0;
+	display:block;
+	float:left;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+		background-image: -ms-linear-gradient(top, #fefefe 0%, #bababa 100%);
+		background-image: -moz-linear-gradient(top, #fefefe 0%, #bababa 100%);
+		background-image: -o-linear-gradient(top, #fefefe 0%, #bababa 100%);
+		background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fefefe), color-stop(1, #bababa));
+		background-image: -webkit-linear-gradient(top, #fefefe 0%, #bababa 100%);
+		background-image: linear-gradient(top, #fefefe 0%, #bababa 100%);
+		background-color:#dedede;
+		-moz-box-shadow: 0px 0px 2px #a0a0a0;
+		-webkit-box-shadow: 0px 0px 2px #a0a0a0;
+		box-shadow: 0px 0px 2px #a0a0a0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=135, Color='#a0a0a0')";
+}
+
+.dataTables_paginate span:hover{
+	color:#fff;
+	text-shadow:#111111 1px 1px 1px;
+		background-image: -ms-linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-image: -moz-linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-image: -o-linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #91CD76), color-stop(1, #4D8933));
+		background-image: -webkit-linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-image: linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-color:#6ba751;
+}
+
+.dataTables_paginate span.paginate_active{
+	color:#fff;
+	text-shadow:#111111 1px 1px 1px;
+		background-image: -ms-linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-image: -moz-linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-image: -o-linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #91CD76), color-stop(1, #4D8933));
+		background-image: -webkit-linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-image: linear-gradient(top, #91CD76 0%, #4D8933 100%);
+		background-color:#6ba751;
+}
+
+#exporttoxls {
+	background: url('export.png') no-repeat center;
+	display: block;
+    width: 216px;
+    height: 57px;
+    float: right;
+	border:none;
+	outline:none;
+	cursor:pointer;
+	position:absolute;
+	left:1051px;
+	top:579px;
+}
+#exporttoxls:hover {
+	background: url('exportHover.png') no-repeat center;
+}
+
+.container
+{
+    width: 100%;   
+}
+
+#conSpacer1
+{
+    float: left;
+    width: 15%;
+}
+
+#conSpacer2
+{
+    float: left;
+    width: 15%;
+}
+
+#buttons {
+	position:absolute;
+	left:10px;
+	top:88px;
+}
+
+#buttons .lines
+{
+    width: 100%;
+    border-spacing: 1px;
+}
+
+#annual
+{
+    position:absolute;
+	left:734px;
+	top:62px;
+	width: 177px;
+	text-align:center;
+}
+
+#savings
+{
+	text-shadow:#ffffff 1px 1px 1px;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.inputs 
+{
+	position:absolute;
+	left:1018px;
+	top:49px;
+	text-align:center;
+}
+
+.inputs input[type="text"]
+{
+  width: 125px;
+  margin-bottom: 7px;
+  margin-top: 6px;
+  border: none;
+  text-align:center;
+  color:#747474;
+  font-size:14px;
+}
+
+#dates
+{
+    float: left;
+}
+
+#btnGo
+{
+	background: url('go.png') no-repeat;
+	width: 122px;
+	height: 57px;
+	margin: 3px 0 0 6px;
+	cursor:pointer;
+	border:none;
+	outline:none;
+}
+
+#btnGo:hover 
+{
+  background: url('goHover.png') no-repeat;
+  width: 122px;
+  height: 57px;
+}
+
+.chart
+{
+    float: left;
+}
+
+#topCharts
+{
+    float: left;
+    margin-top: 38px;
+    width: 100%;
+}
+
+#bottomCharts
+{
+    
+}
+
+#EfficiencyChart
+{
+    width: 50%;
+}
+
+#EfficiencyChart .report
+{
+    float: left;
+    width: 448px;
+}
+
+#Efficiency
+{
+    float: left;
+    width: 172px;
+}
+
+#Efficiency .stats{}
+
+#Efficiency1{
+	text-shadow:#ffffff 1px 1px 1px;
+}
+
+#efficiencyLine {
+	margin-top:3px;
+}
+
+#Efficiency .stat {
+    color: black;
+	text-shadow:#ffffff 1px 1px 1px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+#runningEfficiency{
+	line-height:12px;
+}
+
+#yesterdayEffiency{
+	line-height:12px;
+}
+
+#DowntimeActualVsGoal{
+	margin:10px 10px 0 10px;
+	width: 610px;   
+}
+
+#moveButtonsDown{
+	position:absolute;
+	left:26px;
+	top:427px;
+	z-index:999;
+}
+
+#DowntimeActualVsGoal_rows{
+	margin:10px 10px 0 10px;
+    height: 193px;
+    width: 610px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+#Top5DowntimeEvents{
+    width: 25%;
+}
+
+#mychart1, #VisifireControl7{
+	margin:10px 0 0 0;
+}
+
+#TI_Top5DowntimeEvents_Comments{
+    width: 50%;
+    height: 154px;
+}
+
+#TI_HiddenReasons_top5occuring{
+    width: 25%;
+}
+ 
+table{
+    width:100%;
+    height: 100%;
+}
+    
+table th{
+text-align:left;
+}
+    
+#DowntimeActualVsGoal,#DowntimeActualVsGoal_rows{
+    width:610px;
+    float:left;
+}
+#DowntimeActualVsGoal_rows td,#DowntimeActualVsGoal_rows th{
+    background:#ffffff;
+	border-bottom:1px solid #ddd;
+    text-align:center;
+    font-size:12px;
+}    
