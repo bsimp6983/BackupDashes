@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DTR Dashboard</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link href="plugins/jquery-ui-1.8.2.custom.css" rel="stylesheet" type="text/css" />
+        <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+        <link href="DTR.css" rel="stylesheet" type="text/css" />
+        <link rel="icon" href="images/DTR.jpg" type="image/jpg">
+
+
+        <!--[if lt IE 9]>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        <![endif]-->
+        <!--[if gte IE 9]><!-->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+        <!--<![endif]-->
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="Scripts/jquery.jmodal.js" type="text/javascript"></script>
+        <script src="Scripts/global.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            secondInterval = 5; // feel free to adjust
+            seconds = secondInterval - 1; // do not modify
+
+
+            $(document).ready(function () {
+                getStatus();
+                getPercent();
+                setInterval(getStatus, 1000);
+                setInterval(getPercent, 300000);
+            });
+            function getPercent() {
+                $.ajax({
+                    url: 'GetLinePercent.ashx?client=DTROH',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: { time: new Date().format('yyyy/MM/dd HH:mm:ss') },
+                    success: function (data) {
+                        $.each(data, function () {
+                            $('li#' + this.line).find(".percent").text(this.percent);
+                        });
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        $('div.percent').text('--%');
+                    }
+                });
+            }
+            function getStatus() {
+                seconds++;
+                if (seconds % secondInterval == 0)
+                    $.ajax({
+                        url: 'http://api.thrivemes.com/api/LineStatus/DTROH',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            $.each(data, function () {
+                                $('li#' + this.line).find(".time").text(this.time);
+                                if (this.status == true) {
+                                    $('li#' + this.line).attr('class', 'green_border');
+                                }
+                                else {
+                                    $('li#' + this.line).attr('class', 'red_border');
+                                }
+                            });
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            $('li.green_border').attr('class', 'red_border');
+                            $('div.time').text(textStatus);
+                        }
+                    });
+                else $(".time").each(function() { var times = $(this).text().split(":"); times[2]++; if (times[2] >= 60) { times[2] = 0; times[1]++; if (times[1] >= 60) { times[1] = 0; times[0]++; if (times[0] < 10) times[0] = "0" + times[0]; } if (times[1] < 10) times[1] = "0" + times[1]; } if (times[2] < 10) times[2] = "0" + times[2]; if (!isNaN(times[0]) && !isNaN(times[1]) && !isNaN(times[2])) $(this).text(times.join(":")); });}
+        </script>
+    </head>
+    <body>
+        <div id="header-body">
+            <div id="header-content">
+                <img src="images/dtr-logo.png" id="dtr-logo">
+                <a target="_blank" href="http://www.downtimecollectionsolutions.com/"><img src="images/thrive-logo.png" id="thrive-logo"  alt="Thrive DCS" /></a>
+            </div>
+		</div>
+		<div id="header-bottom"></div>
+		<div id="body">
+			<div id="body-content">
+				<div id="main">
+        			<div class="columnDiv" style="width: 1153px" align="center">
+						<ul class="line">
+							<li class="columnHeader"><b>Zone A</b></li>
+								<li class="red_border" id="A1"><a href="DCSDemo.aspx?line=A1">A1</a><br />
+									<div class="percent">--%</div>  <div class="time">--:--:--</div>
+									<div class="buttons">
+										<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=A1" target="_blank">OI</a>
+										<a href="http://dashboard.thrivemes.com/downtime/snapshot?line=A1" target="_blank">DB</a>
+										<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=A1" target="_blank">RC</a>
+									</div>
+							 	</li>
+								<li class="red_border" id="A2"><a href="DCSDemo.aspx?line=A2">A2</a><br />
+									<div class="percent">--%</div>  <div class="time">--:--:--</div>
+									<div class="buttons">
+										<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=A2" target="_blank">OI</a>
+										<a href="http://dashboard.thrivemes.com/downtime/snapshot?line=A2" target="_blank">DB</a>
+										<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=A2" target="_blank">RC</a>
+									</div>
+							 	</li>
+								<li class="red_border" id="A3"><a href="DCSDemo.aspx?line=A3">A3</a><br />
+									<div class="percent">--%</div>  <div class="time">--:--:--</div>
+									<div class="buttons">
+										<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=A3" target="_blank">OI</a>
+										<a href="http://dashboard.thrivemes.com/downtime/snapshot?line=A3" target="_blank">DB</a>
+										<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=A3" target="_blank">RC</a>
+									</div>
+						 		</li>
+						 		<li class="red_border" id="A4"><a href="DCSDemo.aspx?line=A4">A4</a><br />
+									<div class="percent">--%</div>  <div class="time">--:--:--</div>
+									<div class="buttons">
+										<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=A4" target="_blank">OI</a>
+										<a href="http://dashboard.thrivemes.com/downtime/snapshot?line=A4" target="_blank">DB</a>
+										<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=A4" target="_blank">RC</a>
+									</div>
+								</li>
+						 	</ul>
+					</div>
+					<div class="columnDiv" style="width: 1153px" align="center">
+						  <ul class="line">
+							  <li class="columnHeader"><b>Zone B</b></li>
+							  <li class="red_border" id="ACM_1"><a href="DCSDemo.aspx?line=ACM_1">ACM 1</a><br />
+								  <div class="percent">--%</div>  <div class="time">--:--:--</div>
+								  <div class="buttons">
+									  <a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=ACM_1" target="_blank">OI</a>
+									  <a href="http://dashboard.thrivemes.com/downtime/snapshot?line=ACM_1" target="_blank">DB</a>
+									  <a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=ACM_1" target="_blank">RC</a>
+								  </div>
+							  </li>
+							  <li class="red_border" id="ACM_2"><a href="DCSDemo.aspx?line=ACM_2">ACM 2</a><br />
+								  <div class="percent">--%</div>  <div class="time">--:--:--</div>
+								  <div class="buttons">
+									  <a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=ACM_2" target="_blank">OI</a>
+									  <a href="http://dashboard.thrivemes.com/downtime/snapshot?line=ACM_2" target="_blank">DB</a>
+									  <a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=ACM_2" target="_blank">RC</a>
+								  </div>
+							  </li>
+							  <li class="red_border" id="ACM_3"><a href="DCSDemo.aspx?line=ACM_3">ACM 3</a><br />
+								  <div class="percent">--%</div>  <div class="time">--:--:--</div>
+								  <div class="buttons">
+									  <a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=ACM_3" target="_blank">OI</a>
+									  <a href="http://dashboard.thrivemes.com/downtime/snapshot?line=ACM_3" target="_blank">DB</a>
+									  <a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=ACM_3" target="_blank">RC</a>
+								  </div>
+							  </li>
+						  </ul>
+					</div>
+					<div class="columnDiv" style="width: 1153px" align="center">
+						<ul id="finishing" class="line">
+							<li class="columnHeader"><b>Zone D</b></li>
+							<li class="red_border" id="Autospray_7"><a href="DCSDemo.aspx?line=Autospray_7">Autospray 7</a><br />
+								<div class="percent">--%</div>  <div class="time">--:--:--</div>
+								<div class="buttons">
+									<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Autospray_7" target="_blank">OI</a>
+									<a href="http://dashboard.thrivemes.com/downtime/snapshot?line=Autospray_7" target="_blank">DB</a>
+									<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Autospray_7" target="_blank">RC</a>
+								</div>
+							</li>
+							<li class="red_border" id="D5"><a href="DCSDemo.aspx?line=D5">D5</a><br />
+								<div class="percent">--%</div>  <div class="time">--:--:--</div>
+								<div class="buttons">
+									<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=D5" target="_blank">OI</a>
+									<a href="http://dashboard.thrivemes.com/downtime/snapshot?line=D5" target="_blank">DB</a>
+									<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=D5" target="_blank">RC</a>
+								</div>
+							</li>
+							<li class="red_border" id="Line_8"><a href="DCSDemo.aspx?line=Line_8">D8</a><br />
+								<div class="percent">--%</div>  <div class="time">--:--:--</div>
+								<div class="buttons">
+									<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Line_8" target="_blank">OI</a>
+									<a href="http://dashboard.thrivemes.com/downtime/snapshot?line=Line_8" target="_blank">DB</a>
+									<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Line_8" target="_blank">RC</a>
+								</div>
+							</li>
+							<li class="red_border" id="Subaru_EM_Assy"><a href="DCSDemo.aspx?line=Subaru_EM_Assy">Subaru_EM_Assy</a><br />
+								<div class="percent">--%</div>  <div class="time">--:--:--</div>
+								<div class="buttons">
+									<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Subaru_EM_Assy" target="_blank">OI</a>
+									<a href="http://dashboard.thrivemes.com/downtime/snapshot?line=Subaru_EM_Assy" target="_blank">DB</a>
+									<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Subaru_EM_Assy" target="_blank">RC</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+            </div>
+        </div>
+        <div id="footer"></div>
+    </body>
+</html>

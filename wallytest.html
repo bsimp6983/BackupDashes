@@ -1,0 +1,1426 @@
+﻿ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>WallyTest Dashboard</title>
+<link href="plugins/jquery-ui-1.8.2.custom.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+<link href="WallyTest.css" rel="stylesheet" type="text/css" />
+<link rel="icon" href="images/wallytest.jpg" type="image/png">
+<script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+<script src="Scripts/jquery.jmodal.js" type="text/javascript"></script>
+<script src="plugins/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+<script src="Scripts/global.js" type="text/javascript"></script>
+<script type="text/javascript">
+secondInterval = 5; // feel free to adjust
+    seconds = secondInterval - 1; // do not modify
+   $(document).ready(function () {
+        getStatus();
+        getPercent();
+        setInterval(getStatus, 1000);
+        setInterval(getPercent, 300000);
+    });
+    function getPercent() {
+        $.ajax({
+            url: 'GetLinePercent.ashx?client=WallyTest',
+            type: 'GET',
+            dataType: 'json',
+            data: { time: new Date().format('yyyy/MM/dd HH:mm:ss') },
+            success: function (data) {
+                $.each(data, function () {
+                    $('li#' + this.line).find(".percent").text(this.percent);
+                });
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                $('div.percent').text('--%');
+            }
+        });
+    }
+    function getStatus() {
+	seconds++; if (seconds % secondInterval == 0)
+        $.ajax({
+            url: 'http://api.thrivemes.com/api/LineStatus/wallytest',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                $.each(data, function () {
+                    $('li#' + this.line).find(".time").text(this.time);
+                    if (this.status == true) {
+                        $('li#' + this.line).attr('class', 'green_border');
+                    }
+                    else {
+                        $('li#' + this.line).attr('class', 'red_border');
+                    };
+                });
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                $('li.green_border').attr('class', 'red_border');
+                $('div.time').text(textStatus);
+            }
+        });
+		
+else $(".time").each(function() { var times = $(this).text().split(":"); times[2]++; if (times[2] >= 60) { times[2] = 0; times[1]++; if (times[1] >= 60) { times[1] = 0; times[0]++; if (times[0] < 10) times[0] = "0" + times[0]; } if (times[1] < 10) times[1] = "0" + times[1]; } if (times[2] < 10) times[2] = "0" + times[2]; if (!isNaN(times[0]) && !isNaN(times[1]) && !isNaN(times[2])) $(this).text(times.join(":")); });
+    }
+</script>
+<style type="text/css">
+.style1 {
+	margin: 0px auto 0px 0px;
+	width: 685px;
+}
+</style>
+</head>
+<body>
+	<div id="header" align="center">
+        <!--<div><a href="DCSDemoReasonCodes.aspx">Edit Reason Codes</a></div>-->
+    	<div id="logo_content">
+        </div>
+    </div>
+    <div id="main" align="center">
+        <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="casting" class="line">
+                <li class="red_border" id="Machine_001"><a href="DCSDemo.aspx?line=Machine_001">
+				Machine 001</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_001" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_001" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_001" target="_blank">
+						RC</a>
+					</div>
+                </li>
+                
+                
+               
+
+             </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			 <li class="red_border" id="Machine_002"><a href="DCSDemo.aspx?line=Machine_002">
+			 Machine 002</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_002" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_002" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_002" target="_blank">
+						RC</a>
+					</div>
+                
+             
+					  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_003"><a href="DCSDemo.aspx?line=Machine_003">
+				Machine 003</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_003" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_003" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_003" target="_blank">
+						RC</a>
+					</div>
+               
+                
+                      </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			 <li class="red_border" id="Machine_004"><a href="DCSDemo.aspx?line=Machine_004">
+			 Machine 004</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_004" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_004" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_004" target="_blank">
+						RC</a>
+					</div>
+                
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_005"><a href="DCSDemo.aspx?line=Machine_005">
+				Machine 005</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_005" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_005" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_005" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_006"><a href="DCSDemo.aspx?line=Machine_006">
+				Machine 006</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_006" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_006" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_006" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_007"><a href="DCSDemo.aspx?line=Machine_007">
+				Machine 007</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_007" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_007" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_007" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_008"><a href="DCSDemo.aspx?line=Machine_008">
+				Machine 008</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_008" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_008" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_008" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_009"><a href="DCSDemo.aspx?line=Machine_009">
+				Machine 009</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_009" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_009" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_009" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_010"><a href="DCSDemo.aspx?line=Machine_010">
+				Machine 010</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_010" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_010" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_010" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_011"><a href="DCSDemo.aspx?line=Machine_011">
+				Machine 011</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_011" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_011" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_011" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_12"><a href="DCSDemo.aspx?line=Machine_012">
+				Machine 012</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_012" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_012" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_012" target="_blank">
+						RC</a>
+					</div>
+
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_013"><a href="DCSDemo.aspx?line=Machine_013">
+				Machine 013</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_013" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_013" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_013" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_014"><a href="DCSDemo.aspx?line=Machine_014">
+				Machine 014</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_014" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_014" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_014" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_015"><a href="DCSDemo.aspx?line=Machine_015">
+				Machine 015</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_015" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_015" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_015" target="_blank">
+						RC</a>
+					</div>
+  <!--</div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_016"><a href="DCSDemo.aspx?line=Machine_016">
+				Machine 016</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_016" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_016" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_016" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+                
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_017"><a href="DCSDemo.aspx?line=Machine_017">
+				Machine 017</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_017" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_017" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_017" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="columnDiv" style="width: 1153px; height: 128px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_018"><a href="DCSDemo.aspx?line=Machine_018">
+				Machine 018</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_018" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_018" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_018" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+  <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_019"><a href="DCSDemo.aspx?line=Machine_019">
+				Machine 019</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_019" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_019" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_019" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+                
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_020"><a href="DCSDemo.aspx?line=Machine_020">
+				Machine 020</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_020" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_020" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_020" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="columnDiv" style="width: 1153px; height: 123px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_021"><a href="DCSDemo.aspx?line=Machine_021">
+				Machine 021</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_021" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_021" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_021" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+  <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_022"><a href="DCSDemo.aspx?line=Machine_022">
+				Machine 022</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_022" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_022" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_022" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+                
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_023"><a href="DCSDemo.aspx?line=Machine_023">
+				Machine 023</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_023" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_023" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_023" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="style1" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_024"><a href="DCSDemo.aspx?line=Machine_024">
+				Machine 024</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_024" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_024" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_024" target="_blank">
+						RC</a>
+					</div>
+					
+    </div>
+    <div id="main" align="center">
+        <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="casting" class="line">
+                <li class="red_border" id="Machine_025"><a href="DCSDemo.aspx?line=Machine_025">
+				Machine 025</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_025" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_025" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_025" target="_blank">
+						RC</a>
+					</div>
+                </li>
+                
+                
+               
+
+             </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			 <li class="red_border" id="Machine_026"><a href="DCSDemo.aspx?line=Machine_026">
+			 Machine 026</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_026" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_026" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_026" target="_blank">
+						RC</a>
+					</div>
+                
+             
+					  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_027"><a href="DCSDemo.aspx?line=Machine_027">
+				Machine 027</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_027" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_027" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_027" target="_blank">
+						RC</a>
+					</div>
+               
+                
+                      </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			 <li class="red_border" id="Machine_028"><a href="DCSDemo.aspx?line=Machine_028">
+			 Machine 028</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_028" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_028" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_028" target="_blank">
+						RC</a>
+					</div>
+                
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_029"><a href="DCSDemo.aspx?line=Machine_029">
+				Machine 029</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_029" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_029" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_029" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_030"><a href="DCSDemo.aspx?line=Machine_030">
+				Machine 030</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_030" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_030" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_030" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_031"><a href="DCSDemo.aspx?line=Machine_031">
+				Machine 031</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_031" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_031" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_031" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_032"><a href="DCSDemo.aspx?line=Machine_032">
+				Machine 032</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_032" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_032" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_032" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_033"><a href="DCSDemo.aspx?line=Machine_033">
+				Machine 033</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_033" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_033" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_033" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_034"><a href="DCSDemo.aspx?line=Machine_034">
+				Machine 034</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_034" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_034" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_034" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_035"><a href="DCSDemo.aspx?line=Machine_035">
+				Machine 035</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_035" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_035" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_035" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_036"><a href="DCSDemo.aspx?line=Machine_036">
+				Machine 036</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_036" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_036" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_036" target="_blank">
+						RC</a>
+					</div>
+
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_037"><a href="DCSDemo.aspx?line=Machine_037">
+				Machine 037</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_037" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_037" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_037" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_038"><a href="DCSDemo.aspx?line=Machine_038">
+				Machine 038</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_038" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_038" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_038" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_039"><a href="DCSDemo.aspx?line=Machine_039">
+				Machine 039</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_039" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_039" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_039" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_040"><a href="DCSDemo.aspx?line=Machine_040">
+				Machine 040</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_040" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_040" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_040" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+                
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_041"><a href="DCSDemo.aspx?line=Machine_041">
+				Machine 041</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_041" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_041" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_041" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="columnDiv" style="width: 1153px; height: 128px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_042"><a href="DCSDemo.aspx?line=Machine_042">
+				Machine 042</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_042" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_042" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_042" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+  <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_043"><a href="DCSDemo.aspx?line=Machine_043">
+				Machine 043</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_043" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_043" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_043" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+                
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_044"><a href="DCSDemo.aspx?line=Machine_044">
+				Machine 044</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_044" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_044" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_044" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="columnDiv" style="width: 1153px; height: 123px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_045"><a href="DCSDemo.aspx?line=Machine_045">
+				Machine 045</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_045" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_045" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_045" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+  <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_046"><a href="DCSDemo.aspx?line=Machine_046">
+				Machine 046</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_046" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_046" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_046" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+                
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_047"><a href="DCSDemo.aspx?line=Machine_047">
+				Machine 047</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_047" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_047" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_047" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="style1" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_048"><a href="DCSDemo.aspx?line=Machine_048">
+				Machine 048</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_048" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_048" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_048" target="_blank">
+						RC</a>
+					</div>
+		
+    </div>
+    <div id="main" align="center">
+        <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="casting" class="line">
+                <li class="red_border" id="Machine_049"><a href="DCSDemo.aspx?line=Machine_049">
+				Machine 049</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_049" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_049" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_049" target="_blank">
+						RC</a>
+					</div>
+                </li>
+                
+                
+               
+
+             </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			 <li class="red_border" id="Machine_050"><a href="DCSDemo.aspx?line=Machine_050">
+			 Machine 050</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_050" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_050" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_050" target="_blank">
+						RC</a>
+					</div>
+                
+             
+					  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_051"><a href="DCSDemo.aspx?line=Machine_051">
+				Machine 051</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_051" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_051" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_051" target="_blank">
+						RC</a>
+					</div>
+               
+                
+                      </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			 <li class="red_border" id="Machine_052"><a href="DCSDemo.aspx?line=Machine_052">
+			 Machine 052</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_052" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_052" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_052" target="_blank">
+						RC</a>
+					</div>
+                
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_053"><a href="DCSDemo.aspx?line=Machine_053">
+				Machine 053</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_053" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_053" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_053" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_054"><a href="DCSDemo.aspx?line=Machine_054">
+				Machine 054</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_054" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_054" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_054" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_055"><a href="DCSDemo.aspx?line=Machine_055">
+				Machine 055</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_055" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_055" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_055" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_056"><a href="DCSDemo.aspx?line=Machine_056">
+				Machine 056</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_056" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_056" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_056" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_057"><a href="DCSDemo.aspx?line=Machine_057">
+				Machine 057</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_057" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_057" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_057" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_058"><a href="DCSDemo.aspx?line=Machine_058">
+				Machine 058</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_058" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_058" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_058" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_058"><a href="DCSDemo.aspx?line=Machine_058">
+				Machine 058</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_058" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_058" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_058" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_059"><a href="DCSDemo.aspx?line=Machine_059">
+				Machine 059</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_059" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_059" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_059" target="_blank">
+						RC</a>
+					</div>
+
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_060"><a href="DCSDemo.aspx?line=Machine_060">
+				Machine 060</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_060" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_060" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_060" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_061"><a href="DCSDemo.aspx?line=Machine_061">
+				Machine 061</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_061" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_061" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_061" target="_blank">
+						RC</a>
+					</div>
+			  </ul>
+          </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_062"><a href="DCSDemo.aspx?line=Machine_062">
+				Machine 062</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_062" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_062" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_062" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_063"><a href="DCSDemo.aspx?line=Machine_063">
+				Machine 063</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_063" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_063" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_063" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+                
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_064"><a href="DCSDemo.aspx?line=Machine_064">
+				Machine 064</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_064" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_064" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_064" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="columnDiv" style="width: 1153px; height: 128px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_065"><a href="DCSDemo.aspx?line=Machine_065">
+				Machine 065</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_065" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_065" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_065" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+  <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_066"><a href="DCSDemo.aspx?line=Machine_066">
+				Machine 066</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_066" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_066" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_066" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+                
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_067"><a href="DCSDemo.aspx?line=Machine_067">
+				Machine 067</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_067" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_067" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_067" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="columnDiv" style="width: 1153px; height: 123px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_068"><a href="DCSDemo.aspx?line=Machine_068">
+				Machine 068</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_068" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_068" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_068" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+  <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_069"><a href="DCSDemo.aspx?line=Machine_069">
+				Machine 069</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_069" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_069" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_069" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+                
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_070"><a href="DCSDemo.aspx?line=Machine_070">
+				Machine 070</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_070" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_070" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_070" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="style1" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_071"><a href="DCSDemo.aspx?line=Machine_071">
+				Machine 071</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_071" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_071" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_071" target="_blank">
+						RC</a>
+					</div>
+		         </ul>
+  <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_072"><a href="DCSDemo.aspx?line=Machine_072">
+				Machine 072</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_072" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_072" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_072" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+                
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_073"><a href="DCSDemo.aspx?line=Machine_073">
+				Machine 073</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_073" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_073" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_073" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="columnDiv" style="width: 1153px; height: 123px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_074"><a href="DCSDemo.aspx?line=Machine_074">
+				Machine 074</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_074" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_074" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_074" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+  <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_075"><a href="DCSDemo.aspx?line=Machine_075">
+				Machine 075</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_075" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_075" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_075" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+                
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_076"><a href="DCSDemo.aspx?line=Machine_076">
+				Machine 076</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_076" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_076" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_076" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="style1" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_077"><a href="DCSDemo.aspx?line=Machine_077">
+				Machine 077</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_077" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_077" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_077" target="_blank">
+						RC</a>
+					</div>
+		               </ul>
+  <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_078"><a href="DCSDemo.aspx?line=Machine_078">
+				Machine 078</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_078" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_078" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_078" target="_blank">
+						RC</a>
+					</div>
+		
+                </ul>
+                
+                 </div>
+          <div class="columnDiv" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_079"><a href="DCSDemo.aspx?line=Machine_079">
+				Machine 079</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_079" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_079" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_079" target="_blank">
+						RC</a>
+					</div>
+  </div>
+          <div class="style1" style="width: 1153px" align="center">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="Machine_080"><a href="DCSDemo.aspx?line=Machine_080">
+				Machine 080</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=Machine_080" target="_blank">
+						OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=Machine_080" target="_blank">
+						DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=Machine_080" target="_blank">
+						RC</a>
+					</div>
+                </ul>
+
+           </div>
+		   <div id="thrive" align="center">
+			<a target="_blank" href="http://www.downtimecollectionsolutions.com/"><img src="images/thrive.png" alt="Thrive DCS" /></a>
+		   </div>
+        </div>
+	</div>
+		<div style="text-align: center">
+			<table border="0" cellpadding="0" cellspacing="0" style="width: 1153px; height: 954px; text-align: center;">
+				<!-- MSTableType="layout" --><tr>
+					<td style="height: 954px; width: 1153px" valign="top">
+					<!-- MSCellType="ContentBody" -->&nbsp;</td>
+				</tr>
+			</table>
+		</div>
+</body>
+</html>

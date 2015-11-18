@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>SchaefflerNC Dashboard</title>
+<link href="plugins/jquery-ui-1.8.2.custom.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+<link href="schaeffler.css" rel="stylesheet" type="text/css" />
+<link rel="icon" href="images/schaeffler.png" type="image/png">
+
+
+    <!--[if lt IE 9]>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]><!-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <!--<![endif]-->
+
+<script src="Scripts/jquery.jmodal.js" type="text/javascript"></script>
+<script src="Scripts/global.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        getStatus();
+        getPercent();
+        setInterval(getStatus, 1000);
+        setInterval(getPercent, 300000);
+    });
+    function getPercent() {
+        $.ajax({
+            url: 'GetLinePercent.ashx?client=SchaefflerNC',
+            type: 'GET',
+            dataType: 'json',
+            data: { time: new Date().format('yyyy/MM/dd HH:mm:ss') },
+            success: function (data) {
+                $.each(data, function () {
+                    $('li#' + this.line).find(".percent").text(this.percent);
+                });
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                $('div.percent').text('--%');
+            }
+        });
+    }
+    function getStatus() {
+        $.ajax({
+            url: 'GetLineStatus.ashx?client=SchaefflerNC',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                $.each(data, function () {
+                    $('li#' + this.line).find(".time").text(this.time);
+                    if (this.status == true) {
+                        $('li#' + this.line).attr('class', 'green_border');
+                    }
+                    else {
+                        $('li#' + this.line).attr('class', 'red_border');
+                    };
+                });
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                $('li.green_border').attr('class', 'red_border');
+                $('div.time').text(textStatus);
+            }
+        });
+    }
+</script>
+</head>
+<body>
+	<div id="header">
+        <!--<div><a href="DCSDemoReasonCodes.aspx">Edit Reason Codes</a></div>-->
+    	<div id="logo_content">
+        </div>
+    </div>
+    <div id="main">
+        <div class="columnDiv">
+            <ul id="casting" class="line">
+                <li class="red_border" id="360_Station_A"><a href="DCSDemo.aspx?line=360_Station_A">360 Station A</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=360_Station_A" target="_blank">OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=360_Station_A" target="_blank">DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=360_Station_A" target="_blank">RC</a>
+					</div>
+                </li>
+                <li class="red_border" id="360_Station_B"><a href="DCSDemo.aspx?line=360_Station_B">360 Station B</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=360_Station_B" target="_blank">OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=360_Station_B" target="_blank">DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=360_Station_B" target="_blank">RC</a>
+					</div>
+                </li>
+                
+               
+
+             </ul>
+          </div>
+          <div class="columnDiv">
+            <ul id="finishing" class="line">
+			 </li>
+			 <li class="red_border" id="360_Station_C"><a href="DCSDemo.aspx?line=360_Station_C">360 Station C</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=360_Station_C" target="_blank">OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=360_Station_C" target="_blank">DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=360_Station_C" target="_blank">RC</a>
+					</div>
+                <li class="red_border" id="360_Station_D"><a href="DCSDemo.aspx?line=360_Station_D">360 Station D</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=360_Station_D" target="_blank">OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=360_Station_D" target="_blank">DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=360_Station_D" target="_blank">RC</a>
+					</div>
+                </li>
+             
+					  </ul>
+          </div>
+          <div class="columnDiv">
+            <ul id="finishing" class="line">
+			 </li>
+			    <li class="red_border" id="360_Station_E"><a href="DCSDemo.aspx?line=360_Station_E">360 Station E</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=360_Station_E" target="_blank">OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=360_Station_E" target="_blank">DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=360_Station_E" target="_blank">RC</a>
+					</div>
+                </li>
+                <li class="red_border" id="360_Station_F"><a href="DCSDemo.aspx?line=360_Station_F">360 Station F</a><br />
+                    <div class="percent">--%</div>  <div class="time">--:--:--</div>
+					<div class="buttons">
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemo.aspx?line=360_Station_F" target="_blank">OI</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDashboard.aspx?line=360_Station_F" target="_blank">DB</a>
+						<a href="http://www.downtimecollectionsolutions.com/app/demo/DCSDemoReasonCodes.aspx?line=360_Station_F" target="_blank">RC</a>
+				
+               </div>
+				
+                    </li>
+                </ul>
+           </div>
+		   <div id="thrive">
+			<a target="_blank" href="http://www.downtimecollectionsolutions.com/"><img src="images/thrive.png" alt="Thrive DCS" /></a>
+		   </div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E29BB6E9-137A-498D-9A28-BF83F079E980}</ProjectGuid>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowntimeCollection_Demo</RootNamespace>
+    <AssemblyName>DowntimeCollection Demo</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkProfile />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PackageAsSingleFile>true</PackageAsSingleFile>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus">
+      <HintPath>lib\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WPFVisifire.Charts">
+      <HintPath>lib\WPFVisifire.Charts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Cases.aspx" />
+    <Content Include="Admin\PersonSavings.aspx" />
+    <Content Include="Admin\TvDemoControl.aspx" />
+    <Content Include="Admin\UserList.aspx" />
+    <Content Include="AnnualSavings.aspx" />
+    <Content Include="AscommStatuses.aspx" />
+    <Content Include="BurstPouch.htm" />
+    <Content Include="BurstPouch.aspx" />
+    <Content Include="CnmPager.ascx" />
+    <Content Include="CHGIndex.aspx" />
+    <Content Include="DCSDemo.aspx" />
+    <Content Include="DCSDemo.js" />
+    <Content Include="NeedlePunch.aspx" />
+    <Content Include="Oral_Care.aspx" />
+    <Content Include="SageIndex.css" />
+    <Content Include="SageIndexNew.aspx" />
+    <Content Include="Schaeffler.css" />
+    <Content Include="Scripts\checkpassword.js" />
+    <Content Include="Scripts\user.js" />
+    <Content Include="SkFood.aspx" />
+    <Content Include="SKFoods_OEE.aspx" />
+    <Content Include="TXI.aspx" />
+    <Content Include="DigestEmails.aspx" />
+    <Content Include="SageQAIndex.aspx" />
+    <Content Include="DiamondCrystalIndex.aspx" />
+    <Content Include="DSCWS.asmx" />
+    <Content Include="DigestEmails.ashx" />
+    <Content Include="GetKPI.ashx" />
+    <Content Include="Import.ashx" />
+    <Content Include="Scripts\angular-resource.min.js" />
+    <Content Include="Scripts\angular-ui.js" />
+    <Content Include="Scripts\digestemails.js" />
+    <Content Include="Scripts\jquery-ui-sliderAccess.js" />
+    <Content Include="Scripts\jquery.jscrollpane.css" />
+    <Content Include="Scripts\jquery.jscrollpane.min.js" />
+    <Content Include="Scripts\select2.min.js" />
+    <Content Include="Styles\select2.css" />
+    <Content Include="Timeline.aspx" />
+    <Content Include="TXI_KPIS.aspx" />
+    <Content Include="Wipes.aspx" />
+    <Content Include="YieldGraph.aspx" />
+    <Content Include="FreshGardenDCS.js" />
+    <Content Include="GardenFreshDashboard.aspx" />
+    <Content Include="DashboardDemo.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="DCSDashboardDemo.aspx" />
+    <Content Include="DCSDashboard.aspx" />
+    <Content Include="DiamondCrystaldashboard.js" />
+    <Content Include="DSCtvdemo.js" />
+    <Content Include="Expire.aspx" />
+    <Content Include="ExportXLS.aspx" />
+    <Content Include="GriffinPipe.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="Logout.aspx" />
+    <Content Include="Newtonsoft.Json.dll" />
+    <Content Include="PerformanceChart.aspx" />
+    <Content Include="Register.aspx" />
+    <Content Include="Scripts\backbone-min.js" />
+    <Content Include="Scripts\dttimeline.js" />
+    <Content Include="Scripts\efficiencyGraph.js" />
+    <Content Include="Scripts\global.js" />
+    <Content Include="Scripts\handlebars.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery.qtip-1.0.0-rc3.min.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\pfchart.js" />
+    <Content Include="Scripts\Shared2.js" />
+    <Content Include="Scripts\datetimepicker_css.js" />
+    <Content Include="Scripts\DCSDashboardDemo.js" />
+    <Content Include="DCSDemoReasonCodes.aspx" />
+    <Content Include="Scripts\DCSDemo_bkUp.js" />
+    <Content Include="Scripts\floating.js" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\jquery.corner.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
+    <Content Include="Scripts\jquery.easing.1.3.js" />
+    <Content Include="Scripts\jquery.jmodal.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.metadata.js" />
+    <Content Include="Scripts\jquery.mousewheel.js" />
+    <Content Include="Scripts\jquery.tableSort.js" />
+    <Content Include="Scripts\jquery.tablesorter.js" />
+    <Content Include="Scripts\jquery.tablesorter.min.js" />
+    <Content Include="Scripts\jquery.treeTable.css" />
+    <Content Include="Scripts\jquery.treeTable.js" />
+    <Content Include="Scripts\jquery.ui.js" />
+    <Content Include="Scripts\jScrollPane.css" />
+    <Content Include="Scripts\jScrollPane.js" />
+    <Content Include="Scripts\DCSDemoReasonCodes.js" />
+    <Content Include="Scripts\Shared.js" />
+    <Content Include="Scripts\timeline.css" />
+    <Content Include="Scripts\timeline.js" />
+    <Content Include="Scripts\TvDashboardDemo.js" />
+    <Content Include="Scripts\underscore-min.js" />
+    <Content Include="Scripts\Visifire.js" />
+    <Content Include="SL.Visifire.Charts.xap" />
+    <Content Include="Styles\DCSDemo_style.css" />
+    <Content Include="Styles\demoStyles.css" />
+    <Content Include="Styles\demo_page.css" />
+    <Content Include="Styles\demo_table.css" />
+    <Content Include="Styles\jquery.treeTable.css" />
+    <Content Include="Styles\jScrollPane.css" />
+    <Content Include="ManualCC.aspx" />
+    <Content Include="Styles\TvDemo.css" />
+    <Content Include="Templates\Bar.html" />
+    <Content Include="Templates\Stacked.html" />
+    <Content Include="Templates\Stacked.xml" />
+    <Content Include="TvDashboardDemo.aspx" />
+    <Content Include="TvDemoDCS.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="SageIndex.aspx" />
+    <Content Include="Service.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\Cases.aspx.cs">
+      <DependentUpon>Cases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Cases.aspx.designer.cs">
+      <DependentUpon>Cases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\List.cs" />
+    <Compile Include="Admin\PersonSavings.aspx.cs">
+      <DependentUpon>PersonSavings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PersonSavings.aspx.designer.cs">
+      <DependentUpon>PersonSavings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TvDemoControl.aspx.cs">
+      <DependentUpon>TvDemoControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TvDemoControl.aspx.designer.cs">
+      <DependentUpon>TvDemoControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AnnualSavings.aspx.cs">
+      <DependentUpon>AnnualSavings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnnualSavings.aspx.designer.cs">
+      <DependentUpon>AnnualSavings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AscommStatuses.aspx.cs">
+      <DependentUpon>AscommStatuses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AscommStatuses.aspx.designer.cs">
+      <DependentUpon>AscommStatuses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\BinaryIntegerArray.cs" />
+    <Compile Include="App_Code\BinaryIntegerArrayFactory.cs" />
+    <Compile Include="App_Code\Classes\CaseCountModel.cs" />
+    <Compile Include="App_Code\Classes\ChunkHelper.cs" />
+    <Compile Include="App_Code\Classes\DateTimeHelper.cs" />
+    <Compile Include="App_Code\Classes\DBHelper.cs" />
+    <Compile Include="App_Code\Classes\DigestEmailView.cs" />
+    <Compile Include="App_Code\Classes\KPI.cs" />
+    <Compile Include="App_Code\Classes\NodeLine.cs" />
+    <Compile Include="App_Code\Classes\OEE.cs" />
+    <Compile Include="App_Code\Classes\ThriveUser.cs" />
+    <Compile Include="BurstPouch.aspx.cs">
+      <DependentUpon>BurstPouch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BurstPouch.aspx.designer.cs">
+      <DependentUpon>BurstPouch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CnmPager.ascx.cs">
+      <DependentUpon>CnmPager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CnmPager.ascx.designer.cs">
+      <DependentUpon>CnmPager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CHGIndex.aspx.cs">
+      <DependentUpon>CHGIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CHGIndex.aspx.designer.cs">
+      <DependentUpon>CHGIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\DAL.cs" />
+    <Compile Include="DCSDemo.aspx.cs">
+      <DependentUpon>DCSDemo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DCSDemo.aspx.designer.cs">
+      <DependentUpon>DCSDemo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GetKPI.ashx.cs">
+      <DependentUpon>GetKPI.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Import.ashx.cs">
+      <DependentUpon>Import.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="NeedlePunch.aspx.cs">
+      <DependentUpon>NeedlePunch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NeedlePunch.aspx.designer.cs">
+      <DependentUpon>NeedlePunch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Oral_Care.aspx.cs">
+      <DependentUpon>Oral_Care.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Oral_Care.aspx.designer.cs">
+      <DependentUpon>Oral_Care.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SageIndexNew.aspx.cs">
+      <DependentUpon>SageIndexNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SageIndexNew.aspx.designer.cs">
+      <DependentUpon>SageIndexNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service.ashx.cs">
+      <DependentUpon>Service.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="SkFood.aspx.cs">
+      <DependentUpon>SkFood.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SKFoods_OEE.aspx.cs">
+      <DependentUpon>SKFoods_OEE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SKFoods_OEE.aspx.designer.cs">
+      <DependentUpon>SKFoods_OEE.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TXI.aspx.cs">
+      <DependentUpon>TXI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DigestEmails.ashx.cs">
+      <DependentUpon>DigestEmails.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="DigestEmails.aspx.cs">
+      <DependentUpon>DigestEmails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DigestEmails.aspx.designer.cs">
+      <DependentUpon>DigestEmails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SageQAIndex.aspx.cs">
+      <DependentUpon>SageQAIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SageQAIndex.aspx.designer.cs">
+      <DependentUpon>SageQAIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DiamondCrystalIndex.aspx.cs">
+      <DependentUpon>DiamondCrystalIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DiamondCrystalIndex.aspx.designer.cs">
+      <DependentUpon>DiamondCrystalIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DSCWS.asmx.cs">
+      <DependentUpon>DSCWS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Timeline.aspx.cs">
+      <DependentUpon>Timeline.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Timeline.aspx.designer.cs">
+      <DependentUpon>Timeline.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TXI_KPIS.aspx.cs">
+      <DependentUpon>TXI_KPIS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TXI_KPIS.aspx.designer.cs">
+      <DependentUpon>TXI_KPIS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Wipes.aspx.cs">
+      <DependentUpon>Wipes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Wipes.aspx.designer.cs">
+      <DependentUpon>Wipes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YieldGraph.aspx.cs">
+      <DependentUpon>YieldGraph.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YieldGraph.aspx.designer.cs">
+      <DependentUpon>YieldGraph.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GardenFreshDashboard.aspx.cs">
+      <DependentUpon>GardenFreshDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GardenFreshDashboard.aspx.designer.cs">
+      <DependentUpon>GardenFreshDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\DateTimeHelper.cs" />
+    <Compile Include="DashboardDemo.aspx.cs">
+      <DependentUpon>DashboardDemo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DashboardDemo.aspx.designer.cs">
+      <DependentUpon>DashboardDemo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DCSDashboardDemo.aspx.cs">
+      <DependentUpon>DCSDashboardDemo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DCSDashboardDemo.aspx.designer.cs">
+      <DependentUpon>DCSDashboardDemo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\Classes\DCSDashboardDemoHelper.cs" />
+    <Compile Include="DCSDemoReasonCodes.aspx.cs">
+      <DependentUpon>DCSDemoReasonCodes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DCSDemoReasonCodes.aspx.designer.cs">
+      <DependentUpon>DCSDemoReasonCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DCSDashboard.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>DCSDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DCSDashboard.aspx.designer.cs">
+      <DependentUpon>DCSDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\DiamondCrystaldashboardHelper.cs" />
+    <Compile Include="Expire.aspx.cs">
+      <DependentUpon>Expire.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Expire.aspx.designer.cs">
+      <DependentUpon>Expire.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExportXLS.aspx.cs">
+      <DependentUpon>ExportXLS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExportXLS.aspx.designer.cs">
+      <DependentUpon>ExportXLS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GetLinePercent.ashx.cs">
+      <DependentUpon>GetLinePercent.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="GetLineStatus.ashx.cs">
+      <DependentUpon>GetLineStatus.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="GriffinPipe.aspx.cs">
+      <DependentUpon>GriffinPipe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\MillardDashboardHelper.2.cs" />
+    <Compile Include="App_Code\MillardDashboardHelper.cs" />
+    <Compile Include="App_Code\MillardDashboardTVHelper.2.cs" />
+    <Compile Include="PerformanceChart.aspx.cs">
+      <DependentUpon>PerformanceChart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerformanceChart.aspx.designer.cs">
+      <DependentUpon>PerformanceChart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManualCC.aspx.cs">
+      <DependentUpon>ManualCC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManualCC.aspx.designer.cs">
+      <DependentUpon>ManualCC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TvDashboardDemo.aspx.cs">
+      <DependentUpon>TvDashboardDemo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TvDashboardDemo.aspx.designer.cs">
+      <DependentUpon>TvDashboardDemo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TvDemoDCS.aspx.cs">
+      <DependentUpon>TvDemoDCS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TvDemoDCS.aspx.designer.cs">
+      <DependentUpon>TvDemoDCS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SageIndex.aspx.cs">
+      <DependentUpon>SageIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SageIndex.aspx.designer.cs">
+      <DependentUpon>SageIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\WebProfile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Web.Config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GetLineStatus.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GetLinePercent.ashx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349C5851-65DF-11DA-9384-00065B846F21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1107</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+    <MonoDevelop>
+      <Properties VerifyCodeBehindFields="True" VerifyCodeBehindEvents="True">
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

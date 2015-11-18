@@ -1,0 +1,285 @@
+@charset "utf-8";
+/* CSS Document */
+body
+{
+    background:url(images/bg.jpg) no-repeat top center;
+	margin:0px;
+	padding:0px;
+}
+
+body,font,span,div,table,tr,td,th,col,a,p,ul,li
+{
+	font-size:23px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#000000;
+}
+a
+{
+	color:#000000;
+	text-decoration:none;
+}
+
+a:link
+{
+	color:#000000;
+}
+
+a:visited
+{
+	color:#000000;
+}
+
+a:hover
+{
+	text-decoration:underline;
+}
+
+#header
+{
+	width:100%;
+	background:url(images/header.png) no-repeat top center;
+	height:149px;
+	margin-bottom:16px;
+}
+
+#header #logo_content
+{
+	width:863px;
+	margin:0px auto;
+}
+
+#header #logo_content img
+{
+	border:0px;
+}
+
+#main
+{
+	width:863px;
+	height:443px;
+	margin:0px auto;
+	background:url(images/app-main.png) no-repeat top center;
+	margin-bottom:21px;
+	padding-top:53px;
+}
+
+#main #DataGrid
+{
+	margin:0px 0px 0px 8px;
+	background:url(images/grid-line.jpg) repeat-y;
+	width:812px;
+}
+
+#DataGrid td
+{
+    font-size:17px;
+	height:46px;
+	text-align:left;
+	line-height:46px;
+}
+
+#DataGrid td a
+{
+    font-size:17px;
+}
+
+#main #DataGrid .col1
+{
+	width:162px;
+	text-align:right;
+	padding-right:15px;
+}
+
+#main #DataGrid .col2
+{
+	width:105px;
+	text-align:center;
+}
+
+#main #DataGrid .col3
+{
+	text-align:left;
+	padding-left:10px;
+}
+
+
+#main #DataGrid #assign_reason_code
+{
+	width:343px;
+	height:37px;
+	background:url(images/Assign-Reason-Code.png) no-repeat;
+	border:0px;
+	margin-top:5px;
+}
+
+#footer
+{
+	width:863px;
+	height:66px;
+	margin:0px auto;
+	background:url(images/footer.png) no-repeat top center;
+}
+
+#footer #copyright
+{
+	font-size:11px;
+	font-weight:bold;
+	text-indent:20px;
+	line-height:50px;
+	float:left;
+}
+
+#footer #create_new_event
+{
+	float:left;
+	background:url(images/create-new-event.png) no-repeat;
+	width:352px;
+	height:54px;
+	border:0px;
+	margin:6px 0px 0px 10px;/*100px*/
+}
+
+#footer #create_by
+{
+	font-size:11px;
+	font-weight:bold;
+	height:25px;
+	background:url(images/Create-By-logo.png) no-repeat 100% 0px;
+	padding-right:40px;
+	display:inline-block;
+	margin-top:28px;
+	margin-right:15px;
+	float:right;
+}
+
+#jmodal-container-title,#jmodal-container-title a
+{
+    font-size:12px;
+}
+
+.inputDefaultStyle,select
+{
+    border:solid 1px #000000;width:300px;
+    font-size:40px;
+    height: 49px;
+    text-align:center;
+}
+
+#start_date_time
+{
+    margin:3px;
+    text-align:left;
+    width:400px;
+}
+
+#start_date_time
+{
+    margin:3px 0px 3px 9px\9!important;
+    *+margin:3px 0px 3px 9px;
+    _margin:3px 0px 3px 9px;
+}
+
+/* HACK Firefox*/
+@-moz-document url-prefix()
+{
+    #start_date_time{margin:3px;}
+}
+
+#minutes
+{
+    margin:3px;
+    text-align:center;
+    width:120px;
+}
+
+#line
+{
+    margin:3px 3px 3px 0px;
+}
+
+#for_start_date_time,#for_minutes,#for_line
+{
+    width:200px;
+    text-align:right;
+    margin-right:5px;
+    display:inline-block;
+}
+#for_start_date_time
+{
+    margin-right:5px;
+}
+
+#for_line
+{
+margin-right:2px;
+}
+
+#btn_next_select_reason_code
+{
+    font-size:30px;
+    height: 49px;
+    text-align:center;
+    width:405px;
+    margin:3px 0 3px 208px;
+}
+
+#comment
+{
+ width: 550px;
+ height: 120px;
+ color:#cccccc;
+}
+
+#btnSave
+{
+    margin:5px 0px;
+}
+
+#step1 label,#step2 label,#step3 label,#step4 label{
+    font-size:25px;
+    margin-left:20px;
+    margin-bottom:15px;
+    width:320px;
+    float:left;
+    display:inline-block;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+#btnSave
+{
+    height: 55px;
+    width: 125px;
+    font-size:40px;
+}
+
+#step1,#step2,#step3,#step4
+{
+ width:100%;
+ max-height:400px;
+ overflow:auto;
+}
+
+.jScrollPaneDrag {
+	background: #8A321A url(images/drag_grab.gif) no-repeat 50% 50%;
+}
+
+.jScrollPaneTrack{
+    background:#A68A7E;
+}
+
+
+#calBorder select
+{
+    width:auto;
+    height:auto;
+    font-size:13px;
+}
+
+#calBorder *
+{
+    font-size:13px;
+}
